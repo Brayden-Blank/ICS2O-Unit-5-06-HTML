@@ -18,28 +18,36 @@ if (navigator.serviceWorker) {
 const randomNumber = Math.floor(Math.random() * 6) + 1;
 
 /**
- * This function updates the slider value.
- */
-function updateSliderValue(valueFromSlider) {
-  document.getElementById("slider-value").innerHTML = valueFromSlider;
-}
-
-/**
  * This function compares slider with random number.
  */
 function guessClicked() {
-  const sliderValue = slider.value;
+  
+  const counter1 = parseInt(document.getElementById("integer1").value)
+	const counter2 = parseInt(document.getElementById("integer2").value)
+  var addedNumber = 0
+  var result = 0
 
-  // process
-  if (sliderValue == randomNumber) {
-    document.getElementById("guess-result").innerHTML =
-      "Answer is " + randomNumber + "!" + " Congratulations!";
-    // console.log("Congratulations!")
+  if (counter1 > 0 && counter2 > 0) {
+    while (addedNumber < counter2) {
+      addedNumber = addedNumber + 1;
+      result = result + counter1;
+    }
+  } else if (counter1 < 0 && counter2 < 0) {
+    while (addedNumber > counter2) {
+      addedNumber = addedNumber - 1;
+      result = result - counter1;
+    }
+  } else if (counter1 > 0 && counter2 < 0) {
+    while (addedNumber > counter2) {
+      addedNumber = addedNumber - 1;
+      result = result - counter1;
+    }
+  } else {
+    while (addedNumber < counter2) {
+      addedNumber = addedNumber + 1;
+      result = result + counter1;
+    }
   }
-  //  block of code to be executed if condition1 is true
-  if (sliderValue != randomNumber) {
-    document.getElementById("guess-result").innerHTML =
-      "Answer is " + randomNumber + "!" + " Try again!";
-    // console.log("Try again!")
-  }
+
+document.getElementById('answer').innerHTML = counter1 + " x " + addedNumber + " = " + result;
 }
